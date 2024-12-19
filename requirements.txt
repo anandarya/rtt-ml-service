@@ -1,0 +1,15 @@
+requests
+Flask
+werkzeug
+cachetools
+extract_msg
+pandas
+pytz
+confluent_kafka
+pymongo
+fastapi
+uvicorn
+openai
+streamlit
+streamlit_cookies_controller
+tqdm
