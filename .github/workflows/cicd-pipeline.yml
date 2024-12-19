@@ -1,0 +1,39 @@
+name: CI/CD Pipeline
+
+on:
+  push: 
+    branches:
+      - feature/gcp_migration
+  pull_request:
+    branches:
+        - feature/gcp_migration
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Choose Environnent'
+        required: true
+        default: dev
+        type: choice
+        options:
+          - dev
+          - stage
+          - prod
+  schedule:
+    -cron: '0 0 * * *' #Daily Schedule
+
+jobs:
+  build:
+     runs-on: rtt-runner
+     env:
+       GAR_LOCATION: "us-central1"
+       PROJECT_ID: ""
+       REPOSITORY: "rtt-ml-service"
+       DOCKER_REPOSITORY: rialnhcgpr.jfrog.io
+       IMAGE_NAME: "rtt-ml-service"
+       DOCKER_IMAGE: ""
+       TAG: latest
+    steps:
+      - name: Chekout repository
+        uses: actions/checkout@v4
+        
+       
